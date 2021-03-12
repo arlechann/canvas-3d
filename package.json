@@ -1,0 +1,21 @@
+{
+	"name": "3dcg",
+	"version": "0.0.1",
+	"description": "3D computer graphics learning",
+	"main": "index.js",
+	"scripts": {
+		"start": "http-server -c-1",
+		"test": "tsc && node $(find ./dist/test -maxdepth 1 -type f -name '*.js')",
+		"dev": "webpack --mode development",
+		"pro": "webpack --mode production"
+	},
+	"author": "arlechann",
+	"license": "CC0-1.0",
+	"devDependencies": {
+		"http-server": "^0.12.3",
+		"ts-loader": "^8.0.18",
+		"typescript": "^4.2.3",
+		"webpack": "^5.24.4",
+		"webpack-cli": "^4.5.0"
+	}
+}
