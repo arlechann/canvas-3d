@@ -12,6 +12,7 @@ export const runner: Runner = {
 	run: function () {
 		Object.keys(this.testCases).forEach(key => {
 			this.testCases[key]();
+			console.log(`"${key}" done`)
 		});
 	},
 	success: function () {
