@@ -4,7 +4,7 @@
 		"noImplicitAny": true,
 		"noImplicitThis": true,
 		"strict": true,
-		"module": "CommonJS",
+		"module": "ES6",
 		"target": "ES6",
 		"allowJs": false,
 		"sourceMap": true

@@ -3,6 +3,7 @@
 	"version": "0.0.1",
 	"description": "3D computer graphics learning",
 	"main": "index.js",
+	"type": "module",
 	"scripts": {
 		"start": "http-server -c-1",
 		"test": "tsc && node $(find ./dist/test -maxdepth 1 -type f -name '*.js')",
