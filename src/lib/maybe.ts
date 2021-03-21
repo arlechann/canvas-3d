@@ -1,6 +1,6 @@
 export namespace Maybe {
 	export function wrap<T>(a: T): Maybe<NonNullable<T>> {
-		if (a == null) { new Nothing<NonNullable<T>>(); }
+		if (a == null) { return new Nothing<NonNullable<T>>(); }
 		return new Just<NonNullable<T>>(a as NonNullable<T>);
 	};
 
