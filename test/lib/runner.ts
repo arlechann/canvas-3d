@@ -14,9 +14,10 @@ export const runner: Runner = {
 			this.testCases[key]();
 			console.log(`"${key}" done`)
 		});
+		this.success();
 	},
 	success: function () {
-		console.log('All tests passed.');
+		console.log('\nAll tests done.');
 	},
 	failed: function () {
 		console.log('Failed.');
