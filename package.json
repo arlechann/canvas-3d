@@ -6,7 +6,7 @@
 	"type": "module",
 	"scripts": {
 		"start": "http-server -c-1",
-		"test": "tsc && node $(find ./dist/test -maxdepth 1 -type f -name '*.js')",
+		"test": "tsc && find ./dist/test -maxdepth 1 -type f -name '*.js' | xargs -n1 node",
 		"dev": "webpack --mode development",
 		"pro": "webpack --mode production"
 	},
