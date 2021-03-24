@@ -1,6 +1,6 @@
 import { Writable } from './writable';
-import { Angle } from './angle.js';
-import { numUtils } from './numUtils.js';
+import { Angle } from './angle';
+import { numUtils } from './numUtils';
 
 export namespace Vector3 {
 	type VecKey = 'x' | 'y' | 'z';

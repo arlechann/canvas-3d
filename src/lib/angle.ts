@@ -1,4 +1,4 @@
-import { numUtils } from './numUtils.js';
+import { numUtils } from './numUtils';
 
 export namespace Angle {
 	const PI = Math.PI;
