@@ -1,4 +1,4 @@
-import { runner } from './lib/runner';
+import type { Runner } from './lib/runner';
 import { Assert } from './lib/assert';
 import { ArrayUtils } from '../src/lib/arrayUtils';
 import { bresenham } from '../src/canvas';
@@ -6,7 +6,7 @@ import { bresenham } from '../src/canvas';
 const plotEqual = (a: [number, number], b: [number, number]) => a[0] === b[0] && a[1] === b[1];
 const plotsEqual = (a: [number, number][], b: [number, number][]) => ArrayUtils.arrayEqualBy(a, b, plotEqual);
 
-export const canvasTest = () => {
+export const canvasTest = (runner: Runner) => {
 	runner.testCases.bresenham = () => {
 		Assert.equalBy(
 			bresenham(0, 0, 3, 2),
@@ -29,6 +29,4 @@ export const canvasTest = () => {
 			plotsEqual
 		)
 	}
-
-	runner.run();
 };

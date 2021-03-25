@@ -1,6 +1,6 @@
 type TestCase = () => void;
 
-interface Runner {
+export interface Runner {
 	testCases: { [key: string]: TestCase };
 	run: () => void;
 	success: () => void;

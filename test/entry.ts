@@ -1,5 +1,8 @@
+import { runner } from './lib/runner';
 import { vecTest } from './vector';
 import { canvasTest } from './canvas';
 
-vecTest();
-canvasTest();
+vecTest(runner);
+canvasTest(runner);
+
+runner.run();

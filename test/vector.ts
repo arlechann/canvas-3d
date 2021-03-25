@@ -1,9 +1,9 @@
-import { runner } from './lib/runner';
+import type { Runner } from './lib/runner';
 import { Assert } from './lib/assert';
 import { Vector3 } from '../src/lib/vector';
 import { Angle } from '../src/lib/angle';
 
-export const vecTest = () => {
+export const vecTest = (runner: Runner) => {
 	runner.testCases.equalVec = () => {
 		Assert.equal(Vector3.equal({ x: 0, y: 0, z: 0 }, { x: 0, y: 0, z: 0 }), true);
 		Assert.equal(Vector3.equal({ x: 0, y: 1, z: 2 }, { x: 0, y: 1, z: 2 }), true);
@@ -321,6 +321,4 @@ export const vecTest = () => {
 			Vector3.equal
 		);
 	};
-
-	runner.run();
 };
