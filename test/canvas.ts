@@ -1,14 +1,10 @@
 import { runner } from './lib/runner';
 import { Assert } from './lib/assert';
+import { ArrayUtils } from '../src/lib/arrayUtils';
 import { bresenham } from '../src/canvas';
 
-const arrayEqualBy = <T>(a: T[], b: T[], f: (c: T, d: T) => boolean): boolean => {
-	if (a.length !== b.length) { return false; }
-	return a.every((e: T, i: number) => f(e, b[i]));
-}
-
 const plotEqual = (a: [number, number], b: [number, number]) => a[0] === b[0] && a[1] === b[1];
-const plotsEqual = (a: [number, number][], b: [number, number][]) => arrayEqualBy(a, b, plotEqual);
+const plotsEqual = (a: [number, number][], b: [number, number][]) => ArrayUtils.arrayEqualBy(a, b, plotEqual);
 
 export const canvasTest = () => {
 	runner.testCases.bresenham = () => {
