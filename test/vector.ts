@@ -321,4 +321,25 @@ export const vecTest = (runner: Runner) => {
 			Vector3.equal
 		);
 	};
+
+	runner.testCases.convertVec = () => {
+		Assert.equalBy(
+			Vector3.convert({ x: 1, y: 2, z: 3 }, {
+				m00: 0, m01: 1, m02: 2,
+				m10: 3, m11: 4, m12: 5,
+				m20: 6, m21: 7, m22: 8
+			}),
+			{ x: 24, y: 30, z: 36 },
+			Vector3.equal
+		);
+		Assert.equalBy(
+			Vector3.convert({ x: 1, y: 2, z: 3 }, {
+				m00: 5, m01: 7, m02: 1,
+				m10: 4, m11: 3, m12: 6,
+				m20: 2, m21: 8, m22: 0
+			}),
+			{ x: 19, y: 37, z: 13 },
+			Vector3.equal
+		);
+	}
 };
