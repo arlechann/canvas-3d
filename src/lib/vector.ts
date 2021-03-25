@@ -3,7 +3,8 @@ import { Angle } from './angle';
 import { numUtils } from './numUtils';
 
 export namespace Vector3 {
-	type VecKey = 'x' | 'y' | 'z';
+	const vecKeys = ['x', 'y', 'z'];
+	type VecKey = typeof vecKeys[number];
 	export type Vec = Readonly<Record<VecKey, number>>;
 
 	export const vec = (x: number, y: number, z: number): Vec => ({ x, y, z });
@@ -15,7 +16,7 @@ export namespace Vector3 {
 
 	export const map = (f: (...a: number[]) => number, ...vs: [Vec, ...Vec[]]): Vec => {
 		const ret: Partial<Writable<Vec>> = {};
-		(Object.keys(vs[0]) as (keyof Vec)[]).forEach(key => { ret[key] = f(...vs.map(v => v[key])); });
+		vecKeys.forEach(key => ret[key] = f(...vs.map(v => v[key])));
 		return ret as Vec;
 	};
 
