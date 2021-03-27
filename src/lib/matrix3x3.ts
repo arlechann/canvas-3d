@@ -1,6 +1,6 @@
 import { Angle } from './angle';
 import { numUtils } from './numUtils';
-import { Vector3 } from './vector';
+import { Vector3 } from './vector3';
 import { Writable } from './writable';
 
 export namespace Matrix3x3 {

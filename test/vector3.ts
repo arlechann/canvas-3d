@@ -1,6 +1,6 @@
 import type { Runner } from './lib/runner';
 import { Assert } from './lib/assert';
-import { Vector3 } from '../src/lib/vector';
+import { Vector3 } from '../src/lib/vector3';
 import { Angle } from '../src/lib/angle';
 
 export const vecTest = (runner: Runner) => {

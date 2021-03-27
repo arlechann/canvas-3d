@@ -1,6 +1,6 @@
 import type { Runner } from './lib/runner'
 import { Assert } from './lib/assert';
-import { Matrix3x3 } from '../src/lib/matrix';
+import { Matrix3x3 } from '../src/lib/matrix3x3';
 import { ArrayUtils } from '../src/lib/arrayUtils';
 import { Angle } from '../src/lib/angle';
 

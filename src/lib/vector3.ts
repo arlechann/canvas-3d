@@ -1,7 +1,7 @@
 import { Writable } from './writable';
 import { Angle } from './angle';
 import { numUtils } from './numUtils';
-import { Matrix3x3 } from './matrix';
+import { Matrix3x3 } from './matrix3x3';
 
 export namespace Vector3 {
 	const vecKeys = ['x', 'y', 'z'] as const;
