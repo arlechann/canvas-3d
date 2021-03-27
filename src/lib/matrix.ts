@@ -1,4 +1,6 @@
+import { Angle } from './angle';
 import { numUtils } from './numUtils';
+import { Vector3 } from './vector';
 import { Writable } from './writable';
 
 export namespace Matrix3x3 {
@@ -92,4 +94,83 @@ export namespace Matrix3x3 {
 		}
 		return matrix(...ret);
 	}
+
+	export const rotateWithX = (theta: Angle.Rad): Matrix => matrix(
+		1, 0, 0,
+		0, Angle.cos(theta), Angle.sin(theta),
+		0, -Angle.sin(theta), Angle.cos(theta)
+	);
+
+	export const rotateWithY = (theta: Angle.Rad): Matrix => matrix(
+		Angle.cos(theta), 0, -Angle.sin(theta),
+		0, 1, 0,
+		Angle.sin(theta), 0, Angle.cos(theta)
+	);
+
+	export const rotateWithZ = (theta: Angle.Rad): Matrix => matrix(
+		Angle.cos(theta), Angle.sin(theta), 0,
+		-Angle.sin(theta), Angle.cos(theta), 0,
+		0, 0, 1
+	);
+
+	export const rotate = (axis: Vector3.Vec, theta: Angle.Rad): Matrix => {
+		const n = Vector3.normalize(axis);
+		return matrix(
+			n.x * n.x * (1 - Angle.cos(theta)) + Angle.cos(theta), n.x * n.y * (1 - Angle.cos(theta)) + n.z * Angle.sin(theta), n.x * n.z * (1 - Angle.cos(theta)) - n.y * Angle.sin(theta),
+			n.x * n.y * (1 - Angle.cos(theta)) - n.z * Angle.sin(theta), n.y * n.y * (1 - Angle.cos(theta)) + Angle.cos(theta), n.y * n.z * (1 - Angle.cos(theta)) + n.x * Angle.sin(theta),
+			n.x * n.z * (1 - Angle.cos(theta)) + n.y * Angle.sin(theta), n.y * n.z * (1 - Angle.cos(theta)) - n.x * Angle.sin(theta), n.z * n.z * (1 - Angle.cos(theta)) + Angle.cos(theta),
+		);
+	}
+
+	export const scaleWithX = (k: number): Matrix => matrix(
+		k, 0, 0,
+		0, 1, 0,
+		0, 0, 1
+	);
+
+	export const scaleWithY = (k: number): Matrix => matrix(
+		1, 0, 0,
+		0, k, 0,
+		0, 0, 1
+	);
+
+	export const scaleWithZ = (k: number): Matrix => matrix(
+		1, 0, 0,
+		0, 1, 0,
+		0, 0, k
+	);
+
+	export const scale = (axis: Vector3.Vec, k: number): Matrix => {
+		const n = Vector3.normalize(axis);
+		return matrix(
+			1 + (k - 1) * n.x * n.x, (k - 1) * n.x * n.y, (k - 1) * n.x * n.z,
+			(k - 1) * n.y * n.x, 1 + (k - 1) * n.y * n.y, (k - 1) * n.y * n.z,
+			(k - 1) * n.z * n.x, (k - 1) * n.z * n.y, 1 + (k - 1) * n.z * n.z,
+		);
+	}
+
+	export const projectionToXY = (): Matrix => scaleWithZ(0);
+	export const projectionToYZ = (): Matrix => scaleWithX(0);
+	export const projectionToXZ = (): Matrix => scaleWithY(0);
+	export const projection = (axis: Vector3.Vec): Matrix => scale(axis, 0);
+
+	export const reflection = (axis: Vector3.Vec): Matrix => scale(axis, -1);
+
+	export const shearWithXY = (s: number, t: number): Matrix => matrix(
+		1, 0, 0,
+		0, 1, 0,
+		s, t, 1
+	);
+
+	export const shearWithYZ = (s: number, t: number): Matrix => matrix(
+		1, s, t,
+		0, 1, 0,
+		0, 0, 1
+	);
+
+	export const shearWithXZ = (s: number, t: number): Matrix => matrix(
+		1, 0, 0,
+		s, 1, t,
+		0, 0, 1
+	);
 }

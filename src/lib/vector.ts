@@ -4,7 +4,7 @@ import { numUtils } from './numUtils';
 import { Matrix3x3 } from './matrix';
 
 export namespace Vector3 {
-	const vecKeys = ['x', 'y', 'z'];
+	const vecKeys = ['x', 'y', 'z'] as const;
 	type VecKey = typeof vecKeys[number];
 	export type Vec = Readonly<Record<VecKey, number>>;
 
