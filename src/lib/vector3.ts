@@ -1,9 +1,11 @@
 import { Writable } from './writable';
-import { Angle } from './angle.js';
-import { numUtils } from './numUtils.js';
+import { Angle } from './angle';
+import { numUtils } from './numUtils';
+import { Matrix3x3 } from './matrix3x3';
 
 export namespace Vector3 {
-	type VecKey = 'x' | 'y' | 'z';
+	const vecKeys = ['x', 'y', 'z'] as const;
+	type VecKey = typeof vecKeys[number];
 	export type Vec = Readonly<Record<VecKey, number>>;
 
 	export const vec = (x: number, y: number, z: number): Vec => ({ x, y, z });
@@ -15,7 +17,7 @@ export namespace Vector3 {
 
 	export const map = (f: (...a: number[]) => number, ...vs: [Vec, ...Vec[]]): Vec => {
 		const ret: Partial<Writable<Vec>> = {};
-		(Object.keys(vs[0]) as (keyof Vec)[]).forEach(key => { ret[key] = f(...vs.map(v => v[key])); });
+		vecKeys.forEach(key => ret[key] = f(...vs.map(v => v[key])));
 		return ret as Vec;
 	};
 
@@ -35,6 +37,12 @@ export namespace Vector3 {
 		y: v.z * u.x - v.x * u.z,
 		z: v.x * u.y - v.y * u.x
 	});
+
+	export const convert = (v: Vec, m: Matrix3x3.Matrix): Vec => vec(
+		v.x * m.m00 + v.y * m.m10 + v.z * m.m20,
+		v.x * m.m01 + v.y * m.m11 + v.z * m.m21,
+		v.x * m.m02 + v.y * m.m12 + v.z * m.m22
+	);
 
 	// Project v to u
 	export const project = (v: Vec, u: Vec): Vec => {
