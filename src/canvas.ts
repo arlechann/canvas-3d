@@ -14,6 +14,10 @@ export const Color = {
 // ブレゼンハムのアルゴリズム
 // https://ja.wikipedia.org/wiki/%E3%83%96%E3%83%AC%E3%82%BC%E3%83%B3%E3%83%8F%E3%83%A0%E3%81%AE%E3%82%A2%E3%83%AB%E3%82%B4%E3%83%AA%E3%82%BA%E3%83%A0
 export const bresenham = (x1: number, y1: number, x2: number, y2: number): [number, number][] => {
+	x1 = Math.round(x1);
+	y1 = Math.round(y1);
+	x2 = Math.round(x2);
+	y2 = Math.round(y2);
 	const dx = Math.abs(x2 - x1);
 	const dy = Math.abs(y2 - y1);
 	const sx = x1 < x2 ? 1 : -1;
@@ -83,6 +87,7 @@ export class Canvas {
 
 	stop(): void {
 		clearInterval(this.handle);
+		this.handle = undefined;
 	}
 }
 
